@@ -96,7 +96,34 @@ Step by step navigation
           </div>
 
         </li>
+        <li class="app-step-nav__step js-step" id="driving-lessons-and-practice" style="filter: greyscale(1); opacity:0.5;">
+          <div class="app-step-nav__header js-toggle-panel" data-position="3">
+            <h2 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--logic">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    and
+                  </span>
+                </span>
+              </span>
 
+              <span class="js-step-title">
+                Complete a <span style="text-transform: lowercase;" class="title"></span> course
+              </span>
+            </h2>
+          </div>
+
+          <div class="app-step-nav__panel js-panel" id="step-panel-driving-lessons-and-practice-3"  >
+            <div class="govuk-warning-text">
+              <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+              <strong class="govuk-warning-text__text">
+                <span class="govuk-warning-text__assistive">Warning</span>
+                Complete a communications course first
+              </strong>
+            </div>
+          </div>
+
+        </li>
 
         <li class="app-step-nav__step js-step" id="book-and-manage-your-theory-test">
           <div class="app-step-nav__header js-toggle-panel" data-position="4">
@@ -181,7 +208,7 @@ Step by step navigation
 
   document.addEventListener('DOMContentLoaded', function() {
     var buttons = document.getElementsByClassName('app-step-nav__button');
-    eventFire(buttons[3], 'click');
+    eventFire(buttons[4], 'click');
   }, false);
 </script>
 
