@@ -25,6 +25,9 @@ router.get('/step-by-step-2', function (req, res) {
 router.get('/step-by-step-3', function (req, res) {
   res.render('step-by-step-3', jobs)
 })
+router.get('/vignette-2', function (req, res) {
+  res.render('vignette-2', jobs)
+})
 router.get('/communication', function (req, res) {
   res.render('communication', jobs)
 })
