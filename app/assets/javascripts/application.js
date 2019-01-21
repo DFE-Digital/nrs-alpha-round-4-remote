@@ -1,4 +1,3 @@
-/* global $ */
 
 // Warn about using the kit in production
 if (window.console && window.console.info) {
@@ -7,7 +6,9 @@ if (window.console && window.console.info) {
 
 $(document).ready(function() {
   window.GOVUKFrontend.initAll()
-
+  $('a').click(function( event ){
+    ga('send', 'event', 'link', 'click', event.target.text);
+  })
 })
 
 function save(index, page) {
