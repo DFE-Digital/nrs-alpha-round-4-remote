@@ -36,7 +36,7 @@
         </div>
         <div class="govuk-grid-column-one-half">
           <h3 style="margin-bottom:0" class="govuk-heading-m">Get more advice and guidance</h3>
-          <p class="govuk-body"><a onClick="javascript:history.go(-1)" href="#">Go back</a></p>
+          <p class="govuk-body"><a onClick="javascript:goBack()" href="#">Go back</a></p>
         </div>
         <div class="govuk-grid-column-one-quarter">
           <a href="./vignette-career" class="govuk-button" role="button">Speak to an adviser</a>
@@ -431,6 +431,13 @@
     Array.from(titles).map(title => {
       title.innerText = data[index].name
     })
+  </script>
+  <script>
+    function goBack() {
+        event.preventDefault();
+        window.location.href = document.referrer;
+        return false;
+    }
   </script>
 {% include "includes/scripts.html" %}
 </body>
