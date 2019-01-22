@@ -16,6 +16,9 @@ router.get('/results', function (req, res) {
 router.get('/details', function (req, res) {
   res.render('details', jobs)
 })
+router.get('/job-detail', function (req, res) {
+  res.render('job-detail', jobs)
+})
 router.get('/details-2', function (req, res) {
   res.render('details-2', jobs)
 })

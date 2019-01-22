@@ -1,0 +1,146 @@
+{% extends "layout.html" %} {% block pageTitle %} GOV.UK Prototype Kit {%
+endblock %} {% block content %}
+<main id="main" class="govuk-main-wrapper" role="main">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <a href="../details" class="govuk-back-link">Back to <span style="text-transform: lowercase;" class="title"></span></a>
+    </div>
+  </div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3 govuk-!-margin-top-6">
+        <span style="text-transform: capitalize;" class="jobTitle"></span>
+      </h1>
+      <span id="jobDescription" class="govuk-caption-xl govuk-!-margin-bottom-6">
+
+      </span>
+      <table class="govuk-table">
+
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Salary</th>
+      <td id="salary" class="govuk-table__cell">£25,000</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Working pattern</th>
+      <td id="lifestyle" class="govuk-table__cell">Mon - Fri</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Hours</th>
+      <td class="govuk-table__cell"><span id="hours"></span> hours a week</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header" scope="row">Distance</th>
+      <td id="distance" class="govuk-table__cell">35-40 hours a week</td>
+    </tr>
+  </tbody>
+</table>
+
+<a href="./step-by-step-2" role="button" draggable="false" class="govuk-button govuk-!-margin-bottom-9 govuk-!-margin-top-4">
+  Find out how to train for this job
+</a>
+          <h3 class="govuk-heading-m">Job description:</h3>
+          <p class="govuk-body">
+            We are looking for highly organised candidates with excellent interpersonal skills for the position of <span class="jobTitle" style="text-transform: capitalize;"></span>. You'll be responsible for managing your own time and that of others, providing and taking on feedback as well as the day-to-day tasks of a <span style="text-transform: lowercase;" class="title"></span>.
+            </p>
+          <p class="govuk-body">
+            As <span id="anora">a</span> <span style="text-transform: lowercase;" class="title"></span> you'll need to <span style="text-transform:lowercase;" id="description"></span>.
+            </p>
+
+
+          <h3 class="govuk-heading-m">You will be responsible for:</h3>
+          <ul id="whatyoulldo" class="govuk-list govuk-list--bullet">
+
+          </ul>
+        </div>
+      </div>
+      <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <a href="../results" class="govuk-back-link">Back to <span style="text-transform: lowercase;" class="title"></span></a>
+    </div>
+  </div>
+</main>
+<script type="text/javascript">
+  // Load all content
+  let liveJobs = {
+    "live": [
+      {
+        'jobTitle': 'Team leader',
+        'jobPay': '£22,000',
+        'jobDescription': 'A motivated person needed to run a small team.',
+        'jobDistance': '1.6 miles from your location'
+      },
+      {
+        'jobTitle': 'Junior manager',
+        'jobPay': '£19,500',
+        'jobDescription': 'Help us in our new business.',
+        'jobDistance': '3 miles from your location'
+      },
+      {
+        'jobTitle': 'Co-ordinator',
+        'jobPay': '£21,600',
+        'jobDescription': 'Established company is growing and needs 3 new staff.',
+        'jobDistance': '4 miles from your location'
+      }
+    ]
+  }
+
+  // get data from nunjucks
+  var data = {{ data | dump | safe }};
+  // get chosen job from localStorage
+  var index = JSON.parse(localStorage.getItem('user'));
+  var liveJobIndex = JSON.parse(localStorage.getItem('liveJob'));
+  let chosenJob = liveJobs.live[liveJobIndex + 1];
+
+  var titles = document.getElementsByClassName('title');
+  Array.from(titles).map(title => {
+    title.innerText = data[index].name
+  })
+
+  var jobTitles = document.getElementsByClassName('jobTitle');
+  Array.from(jobTitles).map(title => {
+    title.innerText = liveJobs.live[liveJobIndex + 1].jobTitle
+  })
+
+  var description = document.getElementById('description');
+  description.innerText = data[index].description
+
+  var jobDescription = document.getElementById('jobDescription');
+  jobDescription.innerText = liveJobs.live[liveJobIndex + 1].jobDescription
+
+  var salaries = document.getElementsByClassName('salary');
+  Array.from(salaries).map(salary => {
+    salary.innerText = liveJobs.live[liveJobIndex + 1].jobPay
+  })
+
+  var traineeSalaries = document.getElementsByClassName('traineeSalary');
+  Array.from(traineeSalaries).map(traineeSalary => {
+    traineeSalary.innerText = data[index].traineeSalary
+  })
+
+  var hours = document.getElementById('hours');
+  hours.innerText = data[index].hours
+
+  var distance = document.getElementById('distance');
+  distance.innerText = liveJobs.live[liveJobIndex + 1].jobDistance
+
+  var salary = document.getElementById('salary');
+  salary.innerText = liveJobs.live[liveJobIndex + 1].jobPay
+
+  var anora = document.getElementById('anora');
+  anora.innerText = data[index].anora
+
+  var lifestyle = document.getElementById('lifestyle');
+  lifestyle.innerText = data[index].lifestyle
+
+  var whatyoulldo = document.getElementById('whatyoulldo');
+  data[index].whatyoulldo.map(task => {
+    let list = document.createElement('li');
+    list.innerText = task
+    whatyoulldo.append(list)
+  })
+
+</script>
+{% endblock %}
